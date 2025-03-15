@@ -1,0 +1,78 @@
+internalworking hashmap::
+-------------------------
+Every key in a HashMap is hashed using a hash function. This function converts the key into an integer, which determines the index in an underlying array (called a "bucket array"). The hashCode() method is used to compute the hash value of the key.
+The HashMap internally uses an array of "buckets" to store key-value pairs.
+The array is initialized with a default size (usually 16). The size of the array can grow dynamically as elements are added.
+Each index of the array (or bucket) stores a linked list of entries (key-value pairs) that have the same hash value.
+When two or more keys hash to the same index (i.e., they cause a collision), the HashMap stores them in a linked list at that index. In more recent Java versions (since Java 8), if the number of elements in a bucket exceeds a threshold (typically 8), the linked list is converted into a balanced tree (specifically a red-black tree) to improve lookup time from O(n) to O(log n).
+3. Put Operation (Insertion)
+When a key-value pair is inserted using the put() method, the following steps occur:
+Hash the key: The hashCode() of the key is computed.
+Compute the bucket index: The hash value is then used to compute an index in the bucket array.
+Check for collisions: If a bucket already has entries, the HashMap compares the new key with the existing keys in that bucket using the equals() method. If the key already exists, the value is updated; otherwise, the new key-value pair is added to the bucket.
+If the number of entries in a bucket exceeds a certain threshold, it will be converted into a balanced tree (as mentioned earlier).
+4. Get Operation (Lookup)
+When retrieving a value using the get() method:
+Hash the key: The hash value of the key is computed.
+Find the bucket: The hash value determines which bucket to search.
+Search the bucket: The HashMap looks through the bucket's linked list (or tree, if applicable) to find the key. Once the key is found, its associated value is returned.
+5. Resize Operation
+If the number of entries in the HashMap exceeds the load factor threshold (default is 0.75), the capacity of the internal array is increased (typically doubled).
+When the capacity grows, the entries are rehashed and redistributed across the new array
+
+The reason we subtract 1 from the size of the array when calculating the index in a `HashMap` (or similar data structures) is closely related to how **bitwise operations** work and the use of powers of two for efficient indexing.
+
+Let's break this down:
+
+### 1. **Understanding Powers of Two and Binary Representation**:
+When the size of the array is a power of two, like `16`, `32`, `64`, etc., it has a specific property in its binary representation. For example:
+
+- `16` in binary is `10000` (5 bits).
+- `32` in binary is `100000` (6 bits).
+- `64` in binary is `1000000` (7 bits).
+
+The key idea is that when the size of the array is a power of two, the **bitwise AND** operation can be used to efficiently calculate the index, limiting the result to the range of indices `[0, size-1]`.
+
+### 2. **Why Do We Subtract 1?**
+
+- If the size of the array is `16`, we want to ensure that the index falls within the range `[0, 15]` (because an array with 16 elements has indices from 0 to 15). 
+- To achieve this using a bitwise AND operation, we need to mask all but the last `log2(size)` bits of the hash value. The mask for the range `[0, size-1]` is created by subtracting `1` from the size.
+  - For example, if the size is `16`, the mask will be `16 - 1 = 15`, which is `1111` in binary. This ensures that the resulting index is between `0` and `15` (the range of valid indices for an array of size 16).
+
+### 3. **Bitwise AND with (size - 1)**:
+
+When you use the bitwise AND (`&`) operator with a mask of `size - 1`, it effectively extracts the lower bits of the hash code and makes sure the resulting index is within the bounds of the array. Here's why:
+
+- Let's say the hash code is a large integer like `63281940` (as in your example).
+- When we perform `hashCode & (size - 1)`, we're masking the hash code to extract only the relevant bits that correspond to the range of indices in the array.
+
+If the size is `16`, `size - 1` equals `15`, which in binary is `1111`. This mask will extract the last 4 bits of the hash code, limiting the index to the range `0` to `15`.
+
+For example, let's say:
+- The hash code for the key is `63281940`.
+- We calculate `63281940 & 15` (because `size - 1 = 15`).
+- This ensures that the index is between `0` and `15` (the valid indices for an array of size 16).
+
+### 4. **Why Not Use Just the Size?**
+If we didn't subtract `1` and used `size` directly in the mask (e.g., `hashCode & size`), the bitwise operation would not produce a result within the valid range of indices. It would fail to guarantee the correct distribution of indices, and the index could potentially be out of bounds for the array.
+
+### Example Walkthrough:
+
+Let's consider an example where the size of the array is `16` and the hash code is `63281940`.
+
+- **Step 1**: We calculate `size - 1 = 16 - 1 = 15`, which in binary is `1111`.
+- **Step 2**: We compute the bitwise AND:
+  ```java
+  63281940 & 15 = 1111001001111111110001110100  (binary representation of 63281940)
+                   AND
+                   0000000000000000000000001111  (binary for 15)
+                   --------------------------------
+                   0000000000000000000000000100  (Result = 4 in decimal)
+  ```
+
+- **Step 3**: The result is `4`, which is the index in the array where the key-value pair will be stored.
+
+### 5. **Summary**:
+- **Subtraction of 1** from the size (e.g., `16 - 1 = 15`) is used to create a mask where all bits are `1` up to the number of bits required to represent the size. This allows the bitwise AND operation to efficiently reduce the hash code to a valid index within the array range `[0, size-1]`.
+- Using `size - 1` guarantees that the result will fit within the bounds of the array, avoiding out-of-bounds errors while still allowing for fast, efficient index calculation using bitwise operations.
+
