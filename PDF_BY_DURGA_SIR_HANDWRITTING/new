@@ -1,0 +1,93 @@
+1. What are the main features of microservices?
+2. What are the main components of microservices?
+3. What are the benefits and drawbacks of microservices?
+4. Explain the working of the microservices architecture.
+5. What are the differences between Monolithic, SOA, and Microservices architectures?
+6. How do you manage configuration in a microservices architecture?
+7. What is an API Gateway, and why is it important in microservices?
+8. How do microservices communicate with each other?
+9. How would you implement service discovery in a microservices system?
+10. What strategies can be used for handling failures in a microservices environment?
+
+𝐔𝐧𝐝𝐞𝐫𝐬𝐭𝐚𝐧𝐝𝐢𝐧𝐠 𝐌𝐢𝐜𝐫𝐨𝐬𝐞𝐫𝐯𝐢𝐜𝐞𝐬 𝐀𝐫𝐜𝐡𝐢𝐭𝐞𝐜𝐭𝐮𝐫𝐞
+
+Microservices architecture breaks down applications into smaller, independent services. Here's a rundown of the 𝟏𝟎 𝐤𝐞𝐲 𝐜𝐨𝐦𝐩𝐨𝐧𝐞𝐧𝐭𝐬 in this architecture:
+
+1. 𝐂𝐥𝐢𝐞𝐧𝐭
+These are the end-users who interact with the application via different interfaces like web, mobile, or PC.
+
+2. 𝐂𝐃𝐍 (Content Delivery Network)
+CDNs deliver static content like images, stylesheets, and JavaScript files efficiently by caching them closer to the user's location, reducing load times.
+
+3. 𝐋𝐨𝐚𝐝 𝐁𝐚𝐥𝐚𝐧𝐜𝐞𝐫
+It distributes incoming network traffic across multiple servers, ensuring no single server becomes a bottleneck and improving the application's availability and reliability.
+
+4. 𝐀𝐏𝐈 𝐆𝐚𝐭𝐞𝐰𝐚𝐲
+An API Gateway acts as an entry point for all clients, handling tasks like request routing, composition, and protocol translation, which helps manage multiple microservices behind the scenes.
+
+5. 𝐌𝐢𝐜𝐫𝐨𝐬𝐞𝐫𝐯𝐢𝐜𝐞𝐬
+Each microservice is a small, independent service that performs a specific business function. They communicate with each other via APIs. 
+
+6. 𝐌𝐞𝐬𝐬𝐚𝐠𝐞 𝐁𝐫𝐨𝐤𝐞𝐫
+A message broker facilitates communication between microservices by sending messages between them, ensuring they remain decoupled and can function independently.
+
+7. 𝐃𝐚𝐭𝐚𝐛𝐚𝐬𝐞𝐬
+Each microservice typically has its own database to ensure loose coupling. This can involve different databases for different microservices
+
+8. 𝐈𝐝𝐞𝐧𝐭𝐢𝐭𝐲 𝐏𝐫𝐨𝐯𝐢𝐝𝐞𝐫
+This component handles user authentication and authorization, ensuring secure access to services.
+
+9. 𝐒𝐞𝐫𝐯𝐢𝐜𝐞 𝐑𝐞𝐠𝐢𝐬𝐭𝐫𝐲 𝐚𝐧𝐝 𝐃𝐢𝐬𝐜𝐨𝐯𝐞𝐫𝐲
+This system keeps track of all microservices and their instances, allowing services to find and communicate with each other dynamically.
+
+10. 𝐒𝐞𝐫𝐯𝐢𝐜𝐞 𝐂𝐨𝐨𝐫𝐝𝐢𝐧𝐚𝐭𝐢𝐨𝐧 (e.g., Zookeeper)
+Tools like Zookeeper help manage and coordinate distributed services, ensuring they work smoothly.
+
+
+1️⃣ S - Single Responsibility Principle (SRP)
+
+📌 One class should do only one job.
+
+Imagine a restaurant where a single person cooks, takes orders, and manages payments—total chaos! Instead, restaurants have:
+✅ Chef – Prepares food
+✅ Waiter – Takes orders
+✅ Cashier – Handles payments
+
+Similarly, in code, if a class tries to do everything, it becomes hard to manage. Instead, break it into smaller, focused classes.
+
+2️⃣ O - Open/Closed Principle (OCP)
+
+📌 Code should be open for extension, closed for modification.
+
+Think of a phone with an SD card slot. If you need more storage, you add an SD card, you don’t modify the phone’s hardware.
+
+Similarly, in software, if new features require editing old code, that’s a problem. Instead, design systems where you add new functionality without changing existing code.
+
+3️⃣ L - Liskov Substitution Principle (LSP)
+
+📌 Subclasses should work as expected when used in place of a parent class.
+
+Imagine you rent a car. You expect it to start, accelerate, and brake. If the car rental company gives you a bicycle instead, it won’t behave as expected!
+
+In code, if a subclass breaks the expected behavior of a parent class, it leads to bugs and confusion. The solution? Ensure all subclasses follow the expected behavior.
+
+4️⃣ I - Interface Segregation Principle (ISP)
+
+📌 A class should not be forced to implement methods it doesn’t use.
+
+Think of a TV remote with 100 buttons—but you only need 5. Annoying, right?
+
+If a class is forced to implement unnecessary methods, it becomes cluttered and inefficient. The solution? Create smaller, specialized interfaces instead of one big one.
+
+5️⃣ D - Dependency Inversion Principle (DIP)
+
+📌 Depend on abstractions, not concrete implementations.
+
+Imagine plugging your phone into a universal charger instead of one made only for your model. That’s flexibility!
+
+In code, if one module directly depends on another, changes in one can break the other. Instead, depend on abstract interfaces so that components can be swapped without breaking the system.
+
+🚀 Why Should You Use SOLID?
+✅ Easier to maintain – Modify one part without breaking others
+✅ Scalable – Add new features without rewriting code
+✅ Fewer bugs – Code behaves predictably
