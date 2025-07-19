@@ -23,6 +23,71 @@ Q. What happens if both application.properties and application.yml files exist i
 Ans - If both application.properties and application.yml files exist in the classpath, then the application.yml file will take precedence over the application.properties file. This is because Spring Boot considers YAML files to be more readable and easier to manage than properties files.
 Similarly, if both bootstrap.properties and bootstrap.yml files exist in the classpath, then the bootstrap.yml file will take precedence over the bootstrap.properties file. The bootstrap files are loaded before the application files, and they are used to configure external resources and initialize the application context. This means that if you have configuration settings that need to be loaded before the application context is initialized, then you should use bootstrap files.
 microservice
+advanced-spring-boot
+------------------
+Q.How would you handle inter-service communication in a micro service architecture using spring boot.
+Ans - In a Spring Boot microservice architecture, handle real-time inter-service communication using:
+1. WebClient: For non-blocking, reactive HTTP requests.
+2. Feign Client: For declarative REST clients.
+3. Message Brokers: Such as RabbitMQ or Kafka for asynchronous communication.
+4. Service Discovery: Using Eureka or Consul to dynamically find services.
+5.Spring Cloud Gateway: For routing and load balancing.
+6. Resilience4j: For circuit breaking and resilience patterns.
+Q.If your spring boot application is experiencing performance issues at high load. What are the steps you would take to identify and address the issue?
+Ans - To identify and address performance issues in a Spring Boot application under high load in real time:
+1. Monitor Metrics:
+   - Use tools like Prometheus and Grafana with Spring Boot Actuator to monitor CPU, memory, and response times.
+2. Analyze Logs:
+   - Use ELK stack (Elasticsearch, Logstash, Kibana) to identify error patterns and bottlenecks.
+3.Profile the Application:
+   - Use VisualVM or JProfiler to detect performance bottlenecks.
+4.Optimize Database:
+   - Review and optimize slow queries, add indexing, and use caching with Redis or Ehcache.
+5. Adjust Thread Pools:
+   - Increase thread pool sizes for web server (Tomcat) and async executors.
+6. Scale Horizontally:
+   - Add more instances of the service to handle increased load.
+7. Load Balancing:
+   - Implement load balancing to distribute traffic across instances.
+By quickly implementing these steps, you can identify and mitigate performance issues in real time.
+Q.How would you handle multiple beans of same type?
+Ans - To handle multiple beans of the same type in Spring Boot in real time:
+1. Use @Qualifier Annotation:
+   - Specify which bean to inject.
+     ```java
+     @Service
+     public class MyService {
+         private final MyBean myBean;
+         @Autowired
+         public MyService(@Qualifier("beanName") MyBean myBean) {
+             this.myBean = myBean;
+         }
+     }
+     ```
+2.Use @Primary Annotation:
+   - Mark one bean as the primary bean to be injected by default.
+     ```java
+     @Bean
+     @Primary
+     public MyBean primaryBean() {
+         return new MyBean();
+     }
+     ```
+3. Inject by Name:
+   - Use bean names in the `@Autowired` annotation.
+     ```java
+     @Autowired
+     private MyBean beanName;
+These methods ensure the correct bean is injected when multiple beans of the same type exist.
+Q.How spring profiles work in spring boot application ? How many profiles you have in your project?**Spring Profiles** in a Spring Boot application allow for environment-specific configurations. Profiles are defined in `application-{profile}.properties` or `application-{profile}.yml` files and activated using the `spring.profiles.active` property.
+How They Work:
+1. Define profile-specific properties.
+2. Activate profiles via properties file, environment variable, or command-line argument.
+3. Use the `@Profile` annotation to conditionally load beans.
+Number of Profiles:
+Typically, a project might have profiles like `dev`, `test`, `prod`, and optionally `staging`, but the exact number depends on project requirements.
+Q.How does spring boot decide which server to use ? How to change server if required?
+Q.How does Spring Boot handle externalized configuration? What are the ways ?
 ----------------
 Scenario: You have to design a new microservice for a large e-commerce website. How would you go about identifying the boundaries of this microservice?
 Scenario: Two microservices need to communicate with each other to complete a business transaction. How would you handle this communication in Java?
