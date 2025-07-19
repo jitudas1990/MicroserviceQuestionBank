@@ -22,3 +22,21 @@ When you use @Autowired, Spring Boot automatically creates and injects an instan
 Q. What happens if both application.properties and application.yml files exist in the classpath? What about bootstrap.properties and bootstrap.yml files?
 Ans - If both application.properties and application.yml files exist in the classpath, then the application.yml file will take precedence over the application.properties file. This is because Spring Boot considers YAML files to be more readable and easier to manage than properties files.
 Similarly, if both bootstrap.properties and bootstrap.yml files exist in the classpath, then the bootstrap.yml file will take precedence over the bootstrap.properties file. The bootstrap files are loaded before the application files, and they are used to configure external resources and initialize the application context. This means that if you have configuration settings that need to be loaded before the application context is initialized, then you should use bootstrap files.
+microservice
+----------------
+Scenario: You have to design a new microservice for a large e-commerce website. How would you go about identifying the boundaries of this microservice?
+Scenario: Two microservices need to communicate with each other to complete a business transaction. How would you handle this communication in Java?
+Scenario: You are building a microservices-based application, and you need to implement service discovery. How would you do this in Java?
+Scenario: A microservice fails to complete a task. How would you handle this failure in Java, and how would you ensure that the task is retried?
+Scenario: You are developing a microservice that needs to access sensitive data. How would you ensure that the microservice is secure, and what security protocols would you use in Java?
+Scenario: You need to make changes to a microservice, but you don't want to break the existing APIs that other microservices are using. How would you handle versioning in Java?
+Scenario: You have multiple instances of a microservice running, and you need to distribute the traffic evenly between them. How would you implement load balancing in Java?
+Scenario: Two microservices need to access the same data, and you need to ensure that the data remains consistent. How would you handle this in Java?
+Scenario: One microservice needs to send a message to another microservice asynchronously. How would you handle this in Java, and what protocols would you use?
+Scenario: You have to deploy a new microservice, and you need to ensure that it can scale easily. How would you handle scaling and deployment in Java?
+Q You have a Java web server in production that got stuck: stopped writing logs and doesn’t answer to http requests. How would you investigate?
+Logs say OutOfMemoryError - how would you investigate?
+Customer clicks on a button and gets NullPointerException, but same case works correctly in development environment. There are no log statements in code that help analyse the problem. How would you investigate and what step would you take to ease debugging such problems in future?
+You are investigating an issue and written a JUnit test - it fails as expected. So you start debugger and step over several times, but the issue is not reproduced. Why can this happen?
+Your production Java web server typically handles http request in <50ms, but now you see times raised to about 1 second. How would you investigate?
+You have multithreaded app which looks properly synchronized, but sometimes it seems that when particular field is read it returns old value. You suspect some synchronization issue, how would you investigate?
