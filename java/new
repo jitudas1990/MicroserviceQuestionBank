@@ -1,3 +1,6 @@
+Resume – Experience Section (Updated with Splunk)
+Senior Java Backend Developer | Digital Engineering
+
 Company Name | Location | (Month Year – Present)
 
 Working as part of the Digital Engineering team with a strong focus on Java, Spring Boot, and Microservices running on cloud environments (AWS).
@@ -10,4 +13,37 @@ Collaborated with cross-functional teams using Agile methodologies, participatin
 
 Built strong relationships with business stakeholders through effective communication and a customer-centric approach.
 
-Worked with DevOps tools and CI/CD pipelines to automate builds, testing, and deployment, improving release efficiency and reducing manual intervention
+Worked with DevOps tools and CI/CD pipelines to automate builds, testing, and deployment, improving release efficiency and reducing manual intervention.
+
+Splunk Developer / Observability Engineer (Last 1 Year)
+
+Developed and enhanced Java-based microservices integrated with Splunk for advanced observability and monitoring.
+
+Implemented log ingestion using Splunk HTTP Event Collector (HEC), enabling real-time log streaming from microservices into Splunk.
+
+Performed detailed log analysis using Splunk Processing Language (SPL) for root-cause identification, debugging, and performance tuning.
+
+Built custom alerts, visualizations, and dashboards to monitor microservice health, performance metrics, API latency, error trends, and throughput.
+
+Created Splunk monitoring dashboards to provide real-time visibility of distributed systems, improving operational awareness.
+
+Improved system reliability through structured logging, correlation of distributed logs, and proactive alerting.
+
+Collaborated with SRE/DevOps teams to enhance log quality, indexing strategy, and overall observability framework.
+
+Technical Skills
+Programming & Backend
+
+Java | Spring Boot | Microservices | REST APIs | Maven/Gradle | JUnit
+
+Splunk
+
+Splunk Enterprise | SPL | HEC (HTTP Event Collector) | Dashboard Studio | Alerts | Log Analysis | Indexing | Monitoring Console
+
+DevOps & Cloud
+
+AWS (EC2, S3, CloudWatch) | Jenkins | Git | Docker | CI/CD | Linux
+
+Tools
+
+Postman | Swagger | JIRA | Confluence | IntelliJ | Kibana (optional if used)
